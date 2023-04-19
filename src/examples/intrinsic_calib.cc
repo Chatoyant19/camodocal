@@ -6,6 +6,7 @@
 #include <opencv2/core/core.hpp>
 #include <opencv2/imgproc/imgproc.hpp>
 #include <opencv2/highgui/highgui.hpp>
+#include <string>
 
 #include "camodocal/chessboard/Chessboard.h"
 #include "camodocal/calib/CameraCalibration.h"
@@ -37,7 +38,7 @@ int main(int argc, char** argv)
         ("camera-model", boost::program_options::value<std::string>(&cameraModel)->default_value("mei"), "Camera model: kannala-brandt | mei | pinhole")
         ("camera-name", boost::program_options::value<std::string>(&cameraName)->default_value("camera"), "Name of camera")
         ("opencv", boost::program_options::bool_switch(&useOpenCV)->default_value(false), "Use OpenCV to detect corners")
-        ("view-results", boost::program_options::bool_switch(&viewResults)->default_value(false), "View results")
+        // ("view-results", boost::program_options::bool_switch(&viewResults)->default_value(true), "View results")
         ("verbose,v", boost::program_options::bool_switch(&verbose)->default_value(false), "Verbose output")
         ;
 
@@ -172,6 +173,7 @@ int main(int argc, char** argv)
             chessboard.getSketch().copyTo(sketch);
 
             cv::imshow("Image", sketch);
+            // cv::imwrite("/home/wd/datasets/front_near/result/corner/" + std::to_string(i) + ".jpg", sketch);
             cv::waitKey(50);
         }
         else if (verbose)
@@ -236,6 +238,8 @@ int main(int argc, char** argv)
                         cv::FONT_HERSHEY_COMPLEX, 0.5, cv::Scalar(255, 255, 255),
                         1, CV_AA);
             cv::imshow("Image", cbImages.at(i));
+            // int index = static_cast<size_t>(i);
+            // cv::imwrite("/home/wd/datasets/front_near/result/rep/" + std::to_string(index) + ".jpg", cbImages.at(i));
             cv::waitKey(0);
         }
     }

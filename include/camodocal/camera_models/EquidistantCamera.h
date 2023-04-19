@@ -6,6 +6,8 @@
 
 #include "ceres/rotation.h"
 #include "Camera.h"
+#include "/home/wd/projects/camodocal/src/gpl/gpl.h"
+#include <cmath>
 
 namespace camodocal
 {
@@ -84,6 +86,19 @@ public:
     const std::string& cameraName(void) const;
     int imageWidth(void) const;
     int imageHeight(void) const;
+
+    const double square(const double& x)
+    {
+	    return x * x;
+    }
+
+    void
+    fitCircle(const std::vector<cv::Point2d>& points,
+          double& centerX, double& centerY, double& radius);
+
+    std::vector<cv::Point2d>
+    intersectCircles(double x1, double y1, double r1,
+                 double x2, double y2, double r2);
 
     void estimateIntrinsics(const cv::Size& boardSize,
                             const std::vector< std::vector<cv::Point3f> >& objectPoints,

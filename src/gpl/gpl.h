@@ -3,6 +3,10 @@
 
 #include <algorithm>
 #include <cmath>
+#include <iostream>
+#include <Eigen/Core>
+#include <Eigen/Dense>
+#include <opencv2/core/eigen.hpp>
 #if defined(HAVE_OPENCV2) || defined(HAVE_OPENCV3)
 #include <Eigen/Core>
 #include <Eigen/Dense>

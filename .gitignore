@@ -35,3 +35,11 @@
 # Build Folder
 build/*
 xcodebuild/*
+
+*.cmake
+
+*.log
+
+src/examples/build/*
+
+.vscode
